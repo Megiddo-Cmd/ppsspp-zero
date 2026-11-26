@@ -142,11 +142,6 @@ static NSString *ExtractGameInfoScheme(NSURL *url) {
 		Path gamePath(startupPathUtf8);
 		args.push_back(gamePath.ToString());
 		NSLog(@"SceneDelegate: startup path passed to argv: %s", args.back().c_str());
-	} else {
-#if !PPSSPP_PLATFORM(TVOS)
-		// PPSSPP ZERO starts in the installed PSP firmware XMB when no game was requested.
-		args.push_back("--vsh");
-#endif
 	}
 
 	// Options the process itself was launched with, from Xcode or devicectl (like --graphics=metal).

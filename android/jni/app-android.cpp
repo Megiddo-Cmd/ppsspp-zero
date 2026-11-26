@@ -800,6 +800,12 @@ extern "C" void Java_org_ppsspp_ppsspp_NativeApp_init
 		break;
 	}
 
+	if (cmdLineOptions.bootFilenames.empty() &&
+		!cmdLineOptions.startScreen.has_value() && !cmdLineOptions.bootVSH.has_value()) {
+		// PPSSPP ZERO starts in the installed PSP firmware XMB when no game was requested.
+		cmdLineOptions.bootVSH = true;
+	}
+
 	EARLY_LOG("Calling NativeInit with user_data_path %s, externalStorageDir %s, cacheDir %s", user_data_path.c_str(), externalStorageDir.c_str(), cacheDir.c_str());
 
 	// TODO: We should be able to do the Vulkan init in parallel with NativeInit.
